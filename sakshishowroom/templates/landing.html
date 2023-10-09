@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="h-screen flex items-strech justify-left gap-5 p-10">
+    <div class="bbb flex flex-col justify-center p-5 rounded-md">
+        <div>
+            <p>Internship Project of:</p>
+            <h1 class="text-4xl border-b-2 inline">Shubham Chauhan</h1>
+            <p class="mt-2">Intern at</p>
+        </div>
+        <div class="img-box w-96 mx-auto grow">
+            <img src="{% static 'codsoft.png' %}" class="h-full w-full object-contain">
+        </div>
+
+        <div>
+            <p>Batch - SEPT BATCH A4</p>
+            <p>15  September 2023 - Internship start date.</p>
+            <p>15  October 2023 - Last date of task submission</p>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-5">
+        <p class="text-3xl">Web Developement Project (Level 3): </p>
+
+        <div class="flex bbb p-2 rounded-md cursor-pointer hover:bg-slate-900">
+            <div class="img-box h-48 w-56 mx-auto">
+                <img src="{% static 'project/online-food-delivery.png' %}" class="h-full w-full object-cotain">
+            </div>
+            <div class="px-2">
+                <h1 class="text-3xl mb-3">e-commerce website</h1>
+                <p class="opacity-80 text-sm">Description:</p>
+                <p class="text-sm">
+                    Created Sakhshi Showroom with help of Python Django (on back-end) and jquery,JS,HTML,CSS and Tailwind CSS.
+                </p>
+                <a href="showroom"><button class="bg-emerald-500 px-10 py-2 rounded-md my-3 text-white">Visit</button></a>
+            </div>
+        </div>
+
+
+        <div class="flex bbb p-2 rounded-md cursor-pointer hover:bg-slate-900">
+            <div class="img-box h-48 w-56 mx-auto">
+                <img src="{% static 'project/computer.png' %}" class="h-full w-full object-cotain">
+            </div>
+            <div class="px-2">
+                <h1 class="text-3xl mb-3">Project Management Tool</h1>
+                <p class="opacity-80 text-sm">Description:</p>
+                <p class="text-sm">
+                    Created Project Management Tool with help of Python Django (on back-end) and jquery,JS,HTML,CSS and Tailwind CSS.
+                </p>
+                <a href="projectmanagementtool"><button class="bg-emerald-500 px-10 py-2 rounded-md my-3 text-white">Visit</button></a>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+{% endblock %}

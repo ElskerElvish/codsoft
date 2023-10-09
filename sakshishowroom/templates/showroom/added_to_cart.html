@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main relative bg-slate-900 sm:w-96 mx-auto">
+        {% include 'showroom/header.html' %}
+        <div class="section">
+            {% include 'showroom/swiper.html' %}
+            
+            <div class="px-2 my-10">
+                <div class="user-profile text-center">
+                    <p class="opacity-60 pb-2">Item Added To the cart!!</p>
+                </div>
+            
+                <div class="flex bg-slate-800 rounded-md gap-2 items-center">
+                    <div class="h-12 w-12">
+                        <img src="{{ new_cart.items.image.url }}" class="h-full w-full object-cover">
+                    </div>
+                    <div>
+                        <p class="text-md">Your Item Added To the cart!!</p>
+                        <p class="opacity-60 text-xs">{{ new_cart.items.name }}</p>
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <button class="bg-emerald-600 py-1 w-full rounded-md hover:bg-emerald-500 duration-300 text-sm">Continue Shopping</button>
+                </div>
+
+            </div>
+        </div>
+
+        {% include 'showroom/footer.html' %}
+    </div>
+{% endblock %}

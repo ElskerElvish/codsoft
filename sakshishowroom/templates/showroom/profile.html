@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main relative bg-slate-900 sm:w-96 mx-auto">
+        {% include 'showroom/header.html' %}
+        
+        <div class="section">
+            {% include 'showroom/swiper.html' %}
+
+            <div class="px-2 my-10">
+                <div class="user-profile text-center">
+                    <i class="fa-solid fa-user text-6xl bg-slate-800 rounded-full p-8"></i>
+                    <p class="opacity-60 pb-2">User Profile</p>
+                </div>
+                <div class="px-5">
+                    <form method="post" action="" class="">
+                        <label class="block mb-2">
+                            <span class="text-sm block w-full">Name</span>
+                            <div class="relative">
+                                <input type="text" value="{{ user.first_name }}" class="block w-full p-1 ps-9 rounded bg-slate-700 cursor-not-allowed" disabled>
+                                <i class="fa-solid fa-user absolute top-2 left-2 border-e-2 pe-2 border-slate-600"></i>
+                            </div>
+                        </label>
+
+
+                        <label class="block mb-2">
+                            <span class="text-sm block w-full">Email</span>
+                            <div class="relative">
+                                <input type="text" value="{{ user.username }}" class="block w-full p-1 ps-9 rounded bg-slate-700 cursor-not-allowed" disabled>
+                                <i class="fa-solid fa-envelope absolute top-2 left-2 border-e-2 pe-2 border-slate-600"></i>
+                            </div>
+                        </label>
+
+
+                        <!-- <label class="block mb-2">
+                            <span class="text-sm block w-full">Phone</span>
+                            <div class="relative">
+                                <input type="text" class="block w-full p-1 ps-9 rounded bg-slate-700 cursor-not-allowed" disabled>
+                                <i class="fa-solid fa-phone absolute top-2 left-2 border-e-2 pe-2 border-slate-600"></i>
+                            </div>
+                        </label>
+
+                        <label class="block mb-2">
+                            <span class="text-sm block w-full">Address</span>
+                            <div class="relative">
+                                <textarea class="block rounded w-full bg-slate-700 text-xs ps-9 cursor-not-allowed" disabled></textarea>
+                                <i class="fa-solid fa-address-card absolute top-2 left-2 border-e-2 pe-2 border-slate-600"></i>
+
+                            </div>
+                        </label> -->
+
+                        <label class="block">
+                            <p class="text-xs opacity-60 hover:opacity-100">Change password</p>
+                        </label>
+
+                        <label class="block">
+                            <div class="mt-4">
+                                <button type="button" class="bg-rose-600 py-1 px-4 rounded hover:bg-rose-500 duration-300"><i class="fa-solid fa-pen"></i> Edit</button>
+                                <button type="button" class="hidden bg-emerald-600 py-1 px-4 rounded hover:bg-emerald-500 duration-300"><i class="fa-solid fa-id-badge"></i> Save</button>
+                            </div>
+                        </label>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        {% include 'showroom/footer.html' %}
+    </div>
+{% endblock %}
+

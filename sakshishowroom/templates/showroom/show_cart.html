@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="main relative bg-slate-900 sm:w-96 mx-auto">
+        {% include 'showroom/header.html' %}
+        
+        <div class="section">
+            {% include 'showroom/swiper.html' %}
+            
+            <div class="px-3 my-16">
+                <div class="flex items-center justify-center text-lg my-5 border-b-2 border-slate-800">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <p>&nbsp;Cart</p>
+                </div>
+                
+                {% if products %}
+                    <div class="flex flex-col gap-1">
+                        {% for item in products %}
+                            <div class="flex items-center bg-slate-800 rounded-md p-1">
+                                <div class="flex grow gap-2">
+                                    <div class="h-12 w-12 ">
+                                        <img src="{{ item.0.image.url }}" class="rounded-md h-full w-full object-fit">
+                                    </div>
+                                    <div>
+                                        <p class="text-xl">{{ item.0.name }}</p>
+                                        <p class="text-xs opacity-60">{{ item.0.price }}</p>
+                                    </div>
+                                </div>
+                                <div class="pe-3">
+                                    <p>x {{ item.1 }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <div class="flex items-center bg-slate-800 rounded-md p-2">
+                            <div class="grow">
+                                <p>Total</p>
+                            </div>
+                            <div class="pe-3">
+                                <p>{{ total_amount }}</p>
+                            </div>
+                        </div>
+
+
+                        <div class="communnication mt-5">
+                            <div class="descp mt-2">
+                                <p class="text-sm opacity-60">Delivery address information</p>
+                                <form class="bg-slate-800 rounded-md p-3">
+                                    {% csrf_token %}
+                                    <input type="hidden" id="username" value="{{ request.user.username }}">
+                                    <label class="block mb-2">
+                                        <span class="block text-sm">Name</span>
+                                        <input class="w-full p-1 rounded-md bg-slate-800" value="{{ request.user.first_name }}">
+                                    </label>
+
+                                    <label class="block mb-2">
+                                        <span class="block text-sm">Phone</span>
+                                        <input class="w-full p-1 rounded-md bg-slate-800" id="cart_phone">
+                                    </label>
+
+                                    <label class="block mb-2">
+                                        <span class="block text-sm">Address</span>
+                                        <input class="w-full p-1 rounded-md bg-slate-800" id="cart_address">
+                                    </label>
+
+                                    <label class="block mb-2 hidden" onclick="$(this).hide()" id="comm_form_err">
+                                        <p class="text-xs bg-rose-500 text-white p-1 rounded">All fields are required.</p>
+                                    </label>
+                                </form>
+                            </div>
+                        </div>
+
+
+                        <div class="pay text-right mt-2 mb-">
+                            <button type="button" class="bg-emerald-600 px-5 py-2 rounded-md hover:bg-emerald-500 duration-300" id="rzp-button1">Confirm & Pay <i class="fa-solid fa-angle-right"></i></button>
+                        </div>
+
+                    </div>
+                {% else %}
+                    <div class="flex flex-col items-center justify-center mt-5">
+                        <div class="h-56 w-full">
+                            <img src="{% static 'showroom/products/empty_cart.png' %}" class="h-full w-full object-cover">
+                        </div>
+                        
+                        <div class="text-center">
+                            <p class="text-3xl mb-2">Your Cart Is Empty</p>
+                            <p>Looks like you have not added anything to your cart. Go ahead & explore top categories.</p>
+                        </div>
+                        
+                        <div class="mt-5">
+                            <a href="../../showroom"><button class="bg-emerald-600 p-2 w-full rounded-md hover:bg-emerald-500 duration-300 text-sm">Return to homepage</button></a>
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+                
+        </div>
+
+        {% include 'showroom/footer.html' %}
+    </div>
+
+{% endblock %}

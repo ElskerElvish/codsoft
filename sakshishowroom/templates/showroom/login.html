@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main relative bg-slate-900 sm:w-96 mx-auto">
+        {% include 'showroom/header.html' %}
+        <div class="section">
+           
+            <div class="p-2">
+                <div class="mb-16 bg-slate-800 px-2 py-4 rounded-md">
+                    <form method="post">
+                        {% csrf_token %}
+                        <label class="block mb-5">
+                            <p class="text-3xl text-center pb-2">Login</p>
+                            <p class="text-xs opacity-60 text-center">Enter your details to login</p>
+                        </label>
+                        {% if error %}
+                        <label class="block mb-5">
+                            <p class="text-xs bg-rose-500 text-white p-1 rounded">{{ error }}</p>
+                        </label>
+                        {% endif %}
+
+                        <label class="block mb-2">
+                            <span class="text-sm block w-full">Email</span>
+                            <div class="relative">
+                                <input type="text" name="email" class="block w-full p-1 ps-8 rounded-md bg-slate-700" autocomplete="off">
+                                <i class="fa-solid fa-envelope absolute top-2 left-2 "></i>
+                            </div>
+                        </label>
+
+                        <label class="block">
+                            <span class="text-sm block w-full">Password</span>
+                            <div class="relative">
+                                <input type="password" name="password" class="block w-full p-1 ps-8 rounded-md bg-slate-700" autocomplete="off">
+                                <i class="fa-solid fa-lock absolute top-2 left-2 "></i>
+                            </div>
+                            <p class="text-xs text-right opacity-60 hover:opacity-100">Forgot password?</p>
+                        </label>
+
+                        <label class="block">
+                            <div class="mt-4 flex justify-between items-center">
+                                <button type="submit" class="bg-emerald-600 py-2 px-5 rounded-md hover:bg-emerald-500 duration-300">Login <i class="fa-solid fa-angle-right"></i></button>
+                                <p class="opacity-50 text-sm">OR</p>
+                                <a href="../../showroom/register"><button type="button" class="bg-rose-600 py-2 px-5 rounded-md hover:bg-rose-500 duration-300"><i class="fa-solid fa-user-plus"></i> Register</button></a>
+                            </div>
+                        </label>
+                    </form>
+
+                </div>
+            </div>
+        {% include 'showroom/footer.html' %}
+    </div>
+{% endblock %}

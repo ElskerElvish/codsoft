@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="main relative bg-slate-900 sm:w-96 mx-auto">
+        {% include 'showroom/header.html' %}
+        
+        <div class="section">
+            {% include 'showroom/swiper.html' %}
+
+            <div class="px-2 my-16">
+                <div class="user-profile text-center">
+                    <p class="opacity-60 pb-2">Your Orders</p>
+                </div>
+                <div class="px-1">
+                    {% if orders %}
+                    <div class="flex flex-col gap-1">
+                        {% for item in orders %}
+                            <div class="bg-slate-800 flex flex-col rounded-md p-1 hover:bg-slate-700" id="orderBox">
+                                <div class="flex gap-2 items-center">
+                                    <div class="h-16 w-16 ">
+                                        <img src="{% if item.0.payment_status == 'not-initialized' %}  {% static 'showroom/products/order-f.png' %} {% else %} {% static 'showroom/products/order-conf.png' %} {% endif %}" class="rounded-md h-full w-full object-fit">
+                                    </div>
+                                    <div class="grow">
+                                        <p class="text-md">{{ item.0.order_id }}</p>
+                                        <p class="text-xs opacity-60">{{ item.0.order_date }}</p>
+                                    </div>
+                                    <div class="pe-3">
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </div>
+                                </div> 
+
+                                <div class="hidden hidden_sub_box border-t-2 border-slate-600 mt-2 mx-2">
+                                    {% for p in item.1 %}
+                                    <div class="flex items-center rounded-md p-1 gap-2">
+                                        <div class="flex grow gap-2">
+                                            <div class="h-12 w-12 ">
+                                                <img src="{{ p.image.url }}" class="rounded-md h-full w-full object-fit">
+                                            </div>
+                                            <div>
+                                                <p class="text-xl">{{ p.name }}</p>
+                                                <p class="text-xs opacity-60">{{ p.price }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="flex flex-col items-center justify-center mt-5">
+                        <div class="h-56 w-full">
+                            <img src="{% static 'showroom/products/empty_box.png' %}" class="h-full w-full object-cover">
+                        </div>
+                        
+                        <div class="text-center">
+                            <p class="text-xl mb-2">There are no recent orders to show.</p>
+                            <p class="text-sm">Looks like you have not placed any orders yet. Go ahead & explore top categories.</p>
+                        </div>
+                        
+                        <div class="mt-5">
+                            <a href="../../"><button class="bg-emerald-600 p-2 w-full rounded-md hover:bg-emerald-500 duration-300 text-sm">Continue Shopping</button></a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+        {% include 'showroom/footer.html' %}
+    </div>
+{% endblock %}
+

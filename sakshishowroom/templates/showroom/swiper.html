@@ -1,0 +1,14 @@
+<div class="px-2">
+    <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="True" space-between="30"
+    centered-slides="true" autoplay-delay="2500" autoplay-disable-on-interaction="true">
+        {% for p in slider %}
+        <swiper-slide>
+            <div class="h-96 w-full rounded-md overflow-hidden relative">
+                <img src="{{ p.image.url }}" alt="" class="h-full w-full object-fit">
+                <span class="text-black absolute bottom-0 left-0 py-1 px-2 rounded-tr-md bg-rose-500 text-white">Rs. {{ p.price }}</span>
+            </div>
+        </swiper-slide>
+        {% endfor %}
+
+    </swiper-container>
+</div>

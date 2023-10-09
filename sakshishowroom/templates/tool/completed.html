@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'tool/header.html' %}
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-3 my-5">
+        {% for p in projects %}
+        <a href="../../projectmanagementtool/proj?id={{p.id}}">
+        <div class="tilt-box text-white bg-slate-900 p-5 rounded-md text-center my-2 md:my-0" data-tilt data-tilt-reverse="true" data-tilt-max="5">
+            <div class="img-box h-56 mb-2 w-full mx-auto ">
+                <img src="{% static 'tool/proj.png' %}" class="h-full w-full object-cover rounded-md">
+            </div>
+            <div class="descp">
+                <p>Project Name: {{ p.name }}</p>
+                <p>Start date: {{ p.date }}</p>
+                <p>End date: {{ p.completion_date }}</p>
+            </div>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% include 'tool/footer.html' %}
+{% endblock %}

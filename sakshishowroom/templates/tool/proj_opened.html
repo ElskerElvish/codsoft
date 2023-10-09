@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %} 
+<div class="h-screen flex flex-col">
+        
+   {% include 'tool/header.html' %}
+
+    <main class="text-white flex h-full">
+        
+        <div class="p_listing h-full bg-slate-800 w-60 flex flex-col overflow-y-scroll p-2">
+            
+            <div class=" border-b-2 border-slate-800">
+                <p>Due Projects:</p>
+            </div>
+            
+            <div class="flex flex-col gap-y-2 grow">
+                <!-- pending projects listing.. -->
+                {% for p in pendings %}
+                <a href="../../projectmanagementtool/proj?id={{p.id}}">
+                <div class="bg-slate-700 rounded-md flex items-center p-2 gap-2"> 
+                    <div class="h-12 w-12 rounded-full border-2">
+                        <img src="{% static 'tool/computer.png' %}" class="h-full w-full object-cover">
+                    </div>
+                    <div class="w-full overflow-hidden">
+                        <p class="text-md">{{p.name}}</p>
+                        <p class="text-xs">Due date</p>
+                        <p class="text-xs">25% Completed</p>
+                    </div>
+                </div>
+                </a>
+                {% endfor %}
+            </div>
+            
+        </div>
+        
+        
+        <div class="grow inline-flex p-2 gap-2">
+
+           
+            <div class="bbb flex flex-col rounded-md bg-slate-700 w-80 text-center">
+                <div class="img-box h-60 w-60 mx-5 mx-auto">
+                    <img src="{% static 'tool/computer.png' %}" class="h-full w-full object-cover">
+                </div>
+
+                <div class="p-2 grow">
+                    <p class="text-2xl">{{proj.name}}</p>
+                    <p class="text-ms opacity-80 mb-3">Due date</p>
+                    <p class="text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores soluta, ad quasi beatae eaque, optio odit suscipit et officia, cupiditate doloribus laborum praesentium dolorem minima fugiat distinctio. Nisi, possimus necessitatibus.</p>
+                </div>
+
+                <div>
+                    {% if proj.completed %}
+                        <button class="bg-emerald-500 text-sm px-5 py-2 rounded-md my-3 text-white">Completed</button>
+                    {% else %}
+                    <a href="../../projectmanagementtool/complete?id={{p.id}}"><button class="bg-rose-500 text-sm px-5 py-2 rounded-md my-3 text-white">Mark as Completed</button></a>
+                    {% endif %}
+                </div>
+            </div>
+
+
+
+            <div class="grow pe-1 overflow-y-scroll">
+                
+                <div class="bbb mb-3 p-3 rounded-md">
+                    <div class="flex justify-between items-center mb-2">
+                        <p class="text-2xl">Notes: </p>
+                        <button class="bg-emerald-500 text-white px-3 py-1 rounded-md text-md" id="add_note_button">+ Add Note</button>
+                    </div>
+                    <div class="grid grid-cols-1" id="note_cotainer">
+                        {% for note in notes %}
+                        <div class="p-1 rounded-md inline-flex gap-1 items-center">
+                                <input type="checkbox" class="note" id="note{{note.id}}" value="{{note.id}}" {% if note.completed %} checked disabled {% endif %}>
+                                <p class="text-sm {% if note.completed %} mark-as-complete {% endif %}">{{ note.text }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                </div>
+
+                
+                <div class="bbb mb-3 p-3 rounded-md">
+                    <div class="flex justify-between items-center mb-2">
+                        <p class="text-2xl">Bugs: </p>
+                        <button class="bg-emerald-500 text-white px-3 py-1 rounded-md text-md" id="add_bug_button">+ Bug</button>
+                    </div>
+                    <div class="grid grid-cols-1" id="bug_cotainer">
+                        {% for bug in bugs %}
+                        <div class="p-1 rounded-md inline-flex gap-1 items-center">
+                            <input type="checkbox" class="bug" id="bug{{bug.id}}" value="{{bug.id}}" {% if bug.completed %} checked disabled {% endif %}>
+                            <p class="text-sm {% if bug.completed %} mark-as-complete {% endif %}">{{ bug.text }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="bbb mb-3 p-3 rounded-md">
+                    <div class="flex justify-between items-center mb-2">
+                        <p class="text-2xl">Errors: </p>
+                        <button class="bg-rose-500 text-white px-3 py-1 rounded-md text-md" id="add_error_button">+ Error</button>
+                    </div>
+                    <div class="grid grid-cols-1" id="error_cotainer">
+                        {% for err in errs %}
+                        <div class="p-1 rounded-md inline-flex gap-1 items-center">
+                            <input type="checkbox" class="err" id="err{{err.id}}" value="{{err.id}}" {% if err.completed %} checked disabled {% endif %}>
+                            <p class="text-sm {% if err.completed %} mark-as-complete {% endif %}">{{ err.text }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+            <input type="hidden" id="projectId" value="{{ proj.id }}">
+        </div>
+    </main>
+    
+    {% include 'tool/footer.html' %}
+    
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    
+    const add_note_button = document.querySelector('#add_note_button');
+    const add_bug_button = document.querySelector('#add_bug_button');
+    const add_error_button = document.querySelector('#add_error_button');
+
+    const note_cotainer  = document.querySelector('#note_cotainer');
+    const bug_cotainer  = document.querySelector('#bug_cotainer');
+    const error_cotainer  = document.querySelector('#error_cotainer');
+
+    const proj_id = document.querySelector('#projectId').value;
+
+    const str =`<input type="text"  class="text-black p-1 w-full mt-2" name="note" value=""  id="abc">`
+
+    function HandleInput(inp, container, type){
+
+            $(inp).remove();
+            let value = $(inp).val();
+
+            if(value != ""){
+                $.ajax({
+                    url:"../../projectmanagementtool/notes",
+                    method:"POST",
+                    data: {"type":type, "value": value, 'proj_id': proj_id },
+                    success: function(res){
+                                const str =`
+                                <div class="p-1 rounded-md inline-flex gap-1 items-center">
+                                    <input type="checkbox" class="" id="${type+res.id}" value=${res.id}>
+                                    <p class="text-sm">${value}</p>
+                                </div>`
+                                $(container).append($.parseHTML(str))
+                            }
+                });
+                
+            }
+    }
+
+    function markAsComplete(e){
+        let a = $(e.target);
+        if(e.target.checked){
+
+            console.log();
+            $.ajax({
+                    url:"../../projectmanagementtool/notes",
+                    method:"POST",
+                    data: {"type":'update', "proj_id": a.val(), 'field':e.target.classList.value },
+                    success: function(res){
+                            a.siblings()[0].classList.add("mark-as-complete");
+                        }
+            });
+        }else{
+            a.siblings()[0].classList.remove("mark-as-complete");
+        }
+    } 
+
+    var checks = document.querySelectorAll('input[type=checkbox]');
+    // console.log(checks);
+    checks.forEach((c)=>{
+        c.addEventListener("click", (e)=>markAsComplete(e));
+    });
+
+
+    $(add_note_button).click(() =>{
+        let a = $.parseHTML(str);
+        $(note_cotainer).append(a)
+        let inp = document.querySelector("#abc");
+        $(inp).focus();
+        $(inp).on("focusout",() => HandleInput(inp, note_cotainer));
+        inp.addEventListener("keypress", function(event) {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                HandleInput(inp, note_cotainer, type="note");
+            }
+        });
+    });
+
+    $(add_bug_button).click(() =>{
+        let a = $.parseHTML(str);
+        $(bug_cotainer).append(a)
+
+        let inp = document.querySelector("#abc");
+        $(inp).focus();
+        $(inp).on("focusout",() => HandleInput(inp, bug_cotainer));
+        inp.addEventListener("keypress", function(event) {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                HandleInput(inp, bug_cotainer, type="bug");
+            }
+        });
+        
+    });
+
+
+    $(add_error_button).click(() =>{
+        let a = $.parseHTML(str);
+        $(error_cotainer).append(a)
+
+        let inp = document.querySelector("#abc");
+        $(inp).focus();
+        $(inp).on("focusout",() => HandleInput(inp, error_cotainer));
+        inp.addEventListener("keypress", function(event) {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                HandleInput(inp, error_cotainer, type="err");
+            }
+        });
+        
+    });
+
+</script>
+{% endblock %}

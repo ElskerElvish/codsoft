@@ -1,0 +1,85 @@
+<div class="section">
+
+    {% include 'showroom/swiper.html' %}
+
+    <div class="products my-6 px-3">
+        <div class="flex items-center justify-center text-lg  border-b-2 border-slate-800">
+            <i class="fa-solid fa-shirt"></i>
+            <p>&nbsp;Products</p>
+        </div>
+
+        <div class="products-listing-by-cat">
+            <div class="hot-deals mt-3 bg-slate-800 p-2 rounded-md">
+                <p class="mb-1 border-b-2 border-slate-700 text-sm">Top Deals</p>
+                <div class="flex gap-1 mt-2 mb-1">
+                    
+    
+                    {% for item in top_deals %}
+                    <div class="prdct overflow-hidden rounded-md">
+                        <a href="../../showroom/products?id={{ item.id }}">
+                        <div class="h-20 w-20">
+                            <img src="{{ item.image.url }}" class="object-fit h-full w-full">
+                        </div></a>
+                    </div>
+                    {% endfor %}
+
+                    <div class="prdct overflow-hidden rounded-md grow flex items-center justify-center bg-slate-700 px-2">
+                        <p class="text-center text-xs">Show<br>All</p>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="hot-deals mt-3 bg-slate-800 p-2 rounded-md">
+                <p class="mb-1 border-b-2 border-slate-700 text-sm">Products For You</p>
+                <div class="flex gap-1 mt-2 mb-1">
+                    
+                    {% for item in pfu %}
+
+                    <div class="prdct overflow-hidden rounded-md">
+                        <a href="../../showroom/products?id={{ item.id }}">
+                        <div class="h-20 w-20">
+                            <img src="{{ item.image.url }}" class="object-fit h-full w-full">
+                        </div></a>
+                    </div>
+                    {% endfor %}
+                    <div class="prdct overflow-hidden rounded-md flex items-center justify-center bg-slate-700 px-2">
+                        <p class="text-center text-xs">Show<br>All</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <p class="mb-1 border-b-2 border-slate-700 text-sm mb-2">Shop</p>
+
+                <div class="grid grid-cols-2 gap-2">
+
+                    {% for p in products %}
+                    <div class="border border-slate-700 rounded-md px-2 py-1">
+                        <a href="../../showroom/products?id={{ p.id }}">
+                        <div class="h-48 w-full">
+                            <img src="{{ p.image.url }}" class="object-cover h-full w-full">
+                        </div>
+                        <div>
+                            <p class="text-sm">{{ p.name }}</p>
+                            <p class="py-2">Rs. {{ p.price }}</p>
+                        </a> 
+                            <p class="opacity-60 text-xs">Free Delivery</p>
+
+                            <div>
+                                <button onclick="RemoveFromCart('{{ p.id }}', this)" class="{% if not p.id in cart_items_array %} hidden {% endif %} bg-rose-600 py-1 w-full rounded-md hover:bg-rose-500 duration-300 text-sm">Remove From Cart</button> 
+                                <button onclick="AddToCart('{{ p.id }}', this)" class="{% if p.id in cart_items_array %} hidden {% endif %} bg-emerald-600 py-1 w-full rounded-md hover:bg-emerald-500 duration-300 text-sm">Add to Cart</button> 
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}        
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

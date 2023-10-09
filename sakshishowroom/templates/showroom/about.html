@@ -1,0 +1,69 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="main relative bg-slate-900 sm:w-96 mx-auto">
+        {% include 'showroom/header.html' %}
+        <div class="section">
+            {% include 'showroom/swiper.html' %}
+
+            <div class="products my-10 px-3">
+                <div class="flex items-center justify-center text-lg  border-b-2 border-slate-800 mb-2">
+                    <p>Why choose us!</p>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    
+                    <div class="flex bg-slate-800 rounded-md gap-2 items-center">
+                        <div class="h-12 w-12">
+                            <img src="{% static 'showroom/products/fast.png' %}" class="h-full w-full object-cover">
+                        </div>
+                        <div>
+                            <p class="text-md">Fast & Secure</p>
+                            <p class="opacity-60 text-xs">We provide fast and secure payments system</p>
+                        </div>
+                    </div>
+
+                    <div class="flex bg-slate-800 rounded-md gap-2 items-center">
+                        <div class="h-12 w-12">
+                            <img src="{% static 'showroom/products/retail.png' %}" class="h-full w-full object-cover">
+                        </div>
+                        <div>
+                            <p class="text-md">Retailers Choice!!</p>
+                            <p class="opacity-60 text-xs">Trusted by millions of sellers and have 900+ retailers.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex bg-slate-800 rounded-md gap-2 items-center">
+                        <div class="h-12 w-12">
+                            <img src="{% static 'showroom/products/order-conf.png' %}" class="h-full w-full object-cover">
+                        </div>
+                        <div>
+                            <p class="text-md">Fast Delivery</p>
+                            <p class="opacity-60 text-xs">We deliver the products as fast as possible.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex bg-slate-800 rounded-md gap-2 items-center">
+                        <div class="h-12 w-12">
+                            <img src="{% static 'showroom/products/fashion.png' %}" class="h-full w-full object-cover">
+                        </div>
+                        <div>
+                            <p class="text-md">Fashion Trends</p>
+                            <p class="opacity-60 text-xs ">Our team of fashion experts keeps a close eye on the latest trends.</p>
+                        </div>
+                    </div>
+                
+                </div>
+                <p class="text-sm opacity-60 mt-5">About:</p>
+                <p class="text-sm">At Sakshi Showroom, we are dedicated to providing you with a shopping experience like no other. Located in the heart of Lucknow, our showroom has been a trusted destination for fashion-conscious individuals seeking quality and style for 9 years.</p>
+                <p class="text-sm opacity-60 mt-5">Our Story:</p>
+                <p class="text-sm">
+                    Sakshi Showroom was founded on the principles of quality, style, and customer satisfaction. Since our inception in [year], we have strived to curate a diverse collection of fashion and lifestyle products that cater to the unique tastes and preferences of our discerning customers.
+                </p>
+
+            </div>
+        </div>
+        {% include 'showroom/footer.html' %}
+    </div>
+{% endblock %}

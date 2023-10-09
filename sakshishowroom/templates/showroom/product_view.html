@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main relative bg-slate-900 sm:w-96 mx-auto">
+        {% include 'showroom/header.html' %}
+        
+        <div class="section">
+
+            <div class="px-3 mb-16">
+                <div class="flex items-center justify-center text-lg my-5 border-slate-800 border-b-2">
+                    <i class="fa-solid fa-shirt"></i>
+                    <p>&nbsp;Product Details</p>
+                </div>
+                <div class="p-view flex">
+                    <div class="h-36 w-36 ">
+                        <img src="{{ product.image.url }}" class="rounded-md h-full w-full object-fit">
+                    </div>
+                    <div class="grow px-2 inline-flex flex-col">
+                        <p class="text-xl">{{ product.name }}</p>
+                        <p class="grow text-sm">Rs. {{ product.price }}</p>
+                        <p class="text-xs opacity-60">Free Delivery</p>
+                        <div>
+                            <button onclick="RemoveFromCart('{{ product.id }}', this)" class="{% if not p.id in cart_items_array %} hidden {% endif %} bg-rose-600 py-1 w-full rounded-md hover:bg-rose-500 duration-300 text-sm">Remove From Cart</button> 
+                            <button onclick="AddToCart('{{ product.id }}', this)" class="{% if p.id in cart_items_array %} hidden {% endif %} bg-emerald-600 py-1 w-full rounded-md hover:bg-emerald-500 duration-300 text-sm">Add to Cart</button> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="descp mt-2">
+                    <p class="text-sm opacity-60">Description</p>
+                    <p class="text-xs">{{ product.descprice }}</p>
+                </div>
+
+                <div class="mt-5">
+                    <p class="text-sm opacity-60">Reviews:</p>
+                    
+                    <div class="review mt-1">
+                        <div class="flex flex-col gap-1">
+                            
+                            <div class="profle">
+                                <div class="flex bg-slate-800 rounded-md p-1 gap-2">
+                                    <i class="fa-solid fa-user bg-slate-700 p-3 rounded-full "></i>
+                                    <div class="inline-flex flex-col grow">
+                                        <span class="text-sm">Awesomef sd sad fsadfjkh kjh product</span>
+                                        <span class="text-xs opacity-60">2:00 AM</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="profle">
+                                <div class="flex bg-slate-800 rounded-md p-1 gap-2">
+                                    <i class="fa-solid fa-user bg-slate-700 p-3 rounded-full "></i>
+                                    <div class="inline-flex flex-col grow">
+                                        <span class="text-sm">Awesomef sd sad fsadfjkh kjh product</span>
+                                        <span class="text-xs opacity-60">2:00 AM</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="profle">
+                                <div class="flex bg-slate-800 rounded-md p-1 gap-2">
+                                    <i class="fa-solid fa-user bg-slate-700 p-3 rounded-full "></i>
+                                    <div class="inline-flex flex-col grow">
+                                        <span class="text-sm">Awesomef sd sad fsadfjkh kjh product</span>
+                                        <span class="text-xs opacity-60">2:00 AM</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="profle">
+                                <div class="flex bg-slate-800 rounded-md p-1 gap-2">
+                                    <i class="fa-solid fa-user bg-slate-700 p-3 rounded-full "></i>
+                                    <div class="inline-flex flex-col grow">
+                                        <span class="text-sm">Awesomef sd sad fsadfjkh kjh product</span>
+                                        <span class="text-xs opacity-60">2:00 AM</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    
+                    <div class="add-ur-review mt-5">
+                        <p class="text-sm opacity-60">Post your review:</p>
+
+                        <form method="post" action="">
+                            <div class="flex items-center gap-1 justify-center">
+                                <input name="" placeholder="type your review...." class="grow bg-slate-700 py-1 rounded-md">
+                                <button type="submit" class="bg-slate-700 rounded-full p-2"><i class="fa-solid fa-paper-plane text-xl"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+                
+        </div>
+
+        {% include 'showroom/footer.html' %}
+    </div>
+{% endblock %}

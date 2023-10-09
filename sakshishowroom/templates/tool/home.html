@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% include 'tool/header.html' %}
+<main class="">
+
+    <div class="time">
+        <p class="text-white text-center text-xl p-2 mb-11 mx-auto w-72 border-b-2" id="time"></p>
+    </div>
+
+    <div class="md:flex items-center justify-center gap-5 p-3 my-5">
+    
+        <div class="tilt-box text-white bg-slate-900 p-5 rounded-md text-center my-2 md:my-0" data-tilt data-tilt-reverse="true" data-tilt-max="5">
+            <div class="img-box h-56 mb-2 w-full mx-auto ">
+                <img src="{% static 'tool/proj.png' %}" class="h-full w-full object-cover rounded-md">
+            </div>
+            <div class="descp">
+                <p>Start a new project track porgress, bugs, erros, add notes all at one place. Happy coding!!</p>
+            </div>
+            <div class="btns mt-3">
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <p class="text-left text-sm">Project Name</p>
+                    <input type= "text" class="p-1 w-full rounded text-black mb-1" name="projname" required aria-details="This is required">
+                    <button type="submit" class="btn w-full px-6 py-2 bg-emerald-600 rounded-md">Start New Project</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="tilt-box text-white bg-slate-900 p-5 rounded-md text-center my-2 md:my-0" data-tilt data-tilt-reverse="true" data-tilt-max="5">
+            <div class="img-box h-56 mb-2 w-full mx-auto">
+                <img src="{% static 'tool/pendinf.png' %}" class="h-full w-full object-cover rounded-md">
+            </div>
+            <div class="descp">
+                <p>Start a new project track porgress, bugs, erros, add notes all at one place. Happy coding!!</p>
+            </div>
+            <div class="btns">
+                <a href="../projectmanagementtool/pending"><button class="btn w-full px-6 py-4 mt-5 bg-emerald-600 rounded-md">Pending Projects</button></a>
+            </div>
+        </div>
+
+
+        <div class="tilt-box text-white bg-slate-900 p-5 rounded-md text-center my-2 md:my-0" data-tilt data-tilt-reverse="true" data-tilt-max="5">
+            <div class="img-box h-56 mb-2 w-full mx-auto">
+                <img src="{% static 'tool/completed.jpg' %}" class="h-full w-full object-cover rounded-md">
+            </div>
+            <div class="descp">
+                <p>Start a new project track porgress, bugs, erros, add notes all at one place. Happy coding!!</p>
+            </div>
+            <div class="btns">
+                <a href="../projectmanagementtool/submitted"><button class="btn w-full px-6 py-4 mt-5 bg-emerald-600 rounded-md">Completed Projects</button></a>
+            </div>
+        </div>
+
+    </div>
+    <style>
+        .tilt-box{
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+        .btns, .descp, .img-box{
+            transform: translateZ(30px);
+        }
+    </style>
+    <script>
+        const time = document.querySelector('#time');
+
+        const t = setInterval(() => {
+            time.textContent = new Date().toLocaleTimeString();
+        }, 1000);
+    </script>
+</main>
+{% include 'tool/footer.html' %}
+{% endblock %}

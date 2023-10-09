@@ -1,0 +1,37 @@
+.menu-items{
+    height: 0%;
+    overflow: hidden;
+    width: 150px;
+ }
+ .menu-items ul li{
+ display: none;
+}
+
+
+.mark-as-complete{
+    text-decoration: line-through;
+}
+
+
+
+.bbb{
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 11px );
+    -webkit-backdrop-filter: blur( 11px );
+    border: 1px solid rgba(255, 255, 255, 0.417);
+}
+.tilt-box{
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+.btns, .descp, .img-box{
+    transform: translateZ(30px);
+}
+
+.create-proj-form label, .create-proj-form input, .create-proj-form textarea{
+    display: block;
+}
+
+.p_listing::-webkit-scrollbar{
+    display: none;
+}
